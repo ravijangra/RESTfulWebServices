@@ -16,7 +16,7 @@ public class UserServices {
 	}
 	@POST
 	public void updateUser(){
-		System.out.println("Inside updateUser method");
+		System.out.println("Inside updateUser method of UserServices class");
 	}
 	@DELETE
 	public void deleteUser(){

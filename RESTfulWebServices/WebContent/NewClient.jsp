@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>RESTfullWebServices Client JSP</title>
+<title>RESTfullWebServices New Client JSP</title>
 </head>
 <body>
-<form method="POST" action="http://localhost:8080/RESTfulWebServices/backend/user/service">
+<form method="POST" action="ClientServlet">
 Name: <input type=text name="name"/>
-<input type=submit name=submit/>
+<input type=submit name=submit value="Send"/>
 </form>
 </body>
 </html>
