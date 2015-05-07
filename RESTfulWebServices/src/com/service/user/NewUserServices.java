@@ -55,14 +55,50 @@ public class NewUserServices {
 	}
 	
 	@POST
-	@Path("*/receiveUser")
-	@Produces()
+	@Path("/receiveUser")
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response receiveUser(User user){
 		System.out.println("Inside receiveUser method");
 		System.out.println("User ID is " + user.getUserid() + " and Email ID is :" + user.getEmail());
 		return Response.ok().build();
 	}
+	
+	
+	@GET
+	@Path("/getUserInfo")
+	@Produces(MediaType.TEXT_PLAIN)
+	public User getUserInfo(){
+		User newuser = new User();
+		
+		newuser.setEmail("ravi.p@oracle.com");
+		newuser.setUserid("51977");
+		
+		return newuser;
+	}
+	
+	@GET
+	@Path("/getUserInfo2")
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response getUserInfo2(@QueryParam("userID") String userID ){
+		
+		if (userID == null || userID.isEmpty()) {
+			
+			return Response.status(Response.Status.NOT_FOUND).entity("User not found in Get URL").build();
+
+		}
+		
+		else
+		{
+			User newuser = new User();
+			newuser.setEmail("ravi.p@oracle.com");
+			newuser.setUserid(userID);
+			return Response.ok().entity(newuser).build();
+		}
+			
+			
+	}
+	
+	
 	
 	@POST
 	@Path("/post")
@@ -112,7 +148,7 @@ public class NewUserServices {
 	}
 	
 	private void extractKeyValueFromMMap(MultivaluedMap<String, String> mm) {
-		// TODO Auto-generated method stub
+
 		Set<String> keySet = mm.keySet();
 		for(String key : keySet){
 			System.out.println("Key is  "+ key + " and the value is " + mm.get(key));
