@@ -11,6 +11,7 @@ public class MyApplication extends Application{
 	public Set<Class<?>> getClasses(){
 		Set<Class<?>> s= new HashSet<Class<?>>();
 		s.add(NewUserServices.class);
+		s.add(MyMessageBodyReader.class);
 		return s;
 	}
 }
