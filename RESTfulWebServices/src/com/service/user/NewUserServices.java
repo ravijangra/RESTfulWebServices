@@ -4,12 +4,15 @@ package com.service.user;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Cookie;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -44,10 +47,22 @@ public class NewUserServices {
 		
 		System.out.println("Inside sendResponse Method of NewUserServices class");
 		System.out.println("Added this sysout to create a patch");
-		File file = new File("D:\\Ravi-New\\ibis-Invoice.pdf");
-		return Response.ok().entity(file).header("Content-Disposition", "attachment; filename=\"IBIS.pdf\" ").build();
+		//File file = new File("D:\\Ravi-New\\ibis-Invoice.pdf");
+		List<String> stringList = new ArrayList<String>();
+		GenericEntity<List<String>> genericEntity = new GenericEntity<List<String>> (stringList){};
+		//return Response.ok().entity(file).header("Content-Disposition", "attachment; filename=\"IBIS.pdf\" ").build();
+		return Response.ok().entity(genericEntity).header("Content-Disposition", "attachment; filename=\"IBIS.pdf\" ").build();
 	}
 	
+	@POST
+	@Path("*/receiveUser")
+	@Produces()
+	@Consumes(MediaType.TEXT_PLAIN)
+	public Response receiveUser(User user){
+		System.out.println("Inside receiveUser method");
+		System.out.println("User ID is " + user.getUserid() + " and Email ID is :" + user.getEmail());
+		return Response.ok().build();
+	}
 	
 	@POST
 	@Path("/post")
