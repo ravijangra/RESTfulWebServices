@@ -13,6 +13,7 @@ public class MyApplication extends Application{
 		s.add(NewUserServices.class);
 		s.add(MyMessageBodyReader.class);
 		s.add(MyMessageBodyWriter.class);
+		s.add(UserNotFoundExceptionMapper.class);
 		
 		return s;
 	}

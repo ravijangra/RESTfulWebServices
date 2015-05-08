@@ -66,6 +66,7 @@ public class NewUserServices {
 	
 	@GET
 	@Path("/getUserInfo")
+	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
 	public User getUserInfo(){
 		User newuser = new User();
@@ -79,17 +80,18 @@ public class NewUserServices {
 	@GET
 	@Path("/getUserInfo2")
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response getUserInfo2(@QueryParam("userID") String userID ){
+	public Response getUserInfo2(@QueryParam("userID") String userID ) throws UserNotFoundException{
 		
+		User newuser = new User();
 		if (userID == null || userID.isEmpty()) {
 			
-			return Response.status(Response.Status.NOT_FOUND).entity("User not found in Get URL").build();
+			throw new UserNotFoundException();
 
 		}
 		
 		else
 		{
-			User newuser = new User();
+			
 			newuser.setEmail("ravi.p@oracle.com");
 			newuser.setUserid(userID);
 			return Response.ok().entity(newuser).build();
@@ -246,3 +248,4 @@ public class NewUserServices {
 		return new SpecialUser();
 	}
 }
+

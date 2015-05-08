@@ -25,5 +25,24 @@
   			<url-pattern>/backend/*</url-pattern>
   
   </servlet-mapping>
+  <security-constraint>
+  	<web-resource-collection>
+  		<url-pattern>/backend/user/newservice/getUserInfo</url-pattern>
+  		<http-method>GET</http-method>
+  	</web-resource-collection>
+  	<auth-constraint>
+  		<role-name>member</role-name>
+  	</auth-constraint>
+  	<user-data-constraint>
+  		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  	</user-data-constraint>
+  	  	
+  </security-constraint>
   
+  <login-config>
+  	<auth-method>BASIC</auth-method>
+  </login-config>
+  <security-role>
+  	<role-name>member</role-name>
+  </security-role>
 </web-app>
